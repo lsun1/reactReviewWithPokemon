@@ -10,7 +10,7 @@
 import React from 'react';
 
 const PokemonListItem = (props) => ( //let {name, id, sprites} = props
-  <div className="pokemonItem" onClick={props.handleDelete}>
+  <div className="pokemonItem" onClick={() => props.handleDelete(props.index)}>
     <div>Name: {props.pokemon.name}</div>
     <div>Id: {props.pokemon.id}</div>
     <img src={props.pokemon.sprites.front_default} alt="pokemon image"/> 

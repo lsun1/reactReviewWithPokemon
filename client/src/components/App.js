@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       pokemon: [] //init state as null
     };
+  this.handleDelete = this.handleDelete.bind(this);    
   }
 
   componentDidMount() {
@@ -34,15 +35,23 @@ class App extends React.Component {
       // let copy = this.state.pokemon.slice();
       // copy.push({ id, name, sprites })
       let pokemon = [...this.state.pokemon, { id, name, sprites }];
-      this.setState({ pokemon });
+      this.setState({ pokemon },() => console.log(this.state));
     }) 
+  }
+
+  handleDelete(index) {
+    let todos = this.state.pokemon.slice();
+    todos.splice(index, 1);
+    this.setState({
+       pokemon: todos
+     });
   }
 
   render() {
     return (
       <div>
         <Search getPokemon={this.getPokemon}/> <br />
-        <PokemonList pokemon={this.state.pokemon} />
+        <PokemonList pokemon={this.state.pokemon} handleDelete={this.handleDelete} />
       </div>
     );
   }
